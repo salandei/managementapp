@@ -3,13 +3,14 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager
 from os import path
 
+db = SQLAlchemy()
 DB = 'database.db'
 
 def create_app():
     app = Flask(__name__)
     app.config['SECRET_KEY'] = 'osff-notes-app'
     app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///'+ path.join(app.instance_path, DB)
-    db = SQLAlchemy(app)
+    db.init_app(app)
 
     from .views import views
     from .auth import auth
