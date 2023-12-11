@@ -24,4 +24,5 @@ def create_app():
 
 def create_db(app):
     if not path.exists(f'notesapp/{DB}'):
+        # Create database models
         db.create_all(app=app)
