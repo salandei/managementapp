@@ -19,7 +19,8 @@ def create_app():
     app.register_blueprint(auth, url_prefix='/')
 
     from .models import User, Note
-    create_db(app)
+    with app.app_context():
+        db.create_all()
 
     login_manager = LoginManager()
     login_manager.login_view = 'auth.login'
@@ -30,9 +31,3 @@ def create_app():
         return User.query.get(int(id))
 
     return app
-
-def create_db(app):
-    if not path.exists('notesapp/' + DB):
-        # Create database models
-        db.create_all(app=app)
-        print('Created Database')
