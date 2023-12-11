@@ -49,7 +49,7 @@ def create_account():
             db.session.add(new_user)
             db.session.commit()
             flash('User account created successfully', category='success')
-            login_user(user, remember=True)
+            login_user(new_user, remember=True)
             return redirect(url_for('views.index'))
 
     return render_template('create_account.html', user=current_user)
