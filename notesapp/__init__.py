@@ -18,7 +18,7 @@ def create_app():
     app.register_blueprint(auth, url_prefix='/')
 
     from .models import User, Note
-    
+    create_db(app)
 
     return app
 
@@ -26,3 +26,4 @@ def create_db(app):
     if not path.exists(f'notesapp/{DB}'):
         # Create database models
         db.create_all(app=app)
+        print('Created Database')
