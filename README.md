@@ -7,7 +7,7 @@ Note: You can choose to create a virtual environment or not.
 
 - clone the repo to your local machine
 - cd into project's root
-- run pip3 install -r requirements.txt to install necessary dependencies
+- run `pip3 install -r requirements.txt` to install necessary dependencies
 - run `main.py` (The app must be fully configured and running now)
 
 ## Requirements
