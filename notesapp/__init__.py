@@ -3,14 +3,13 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager
 from os import path
 
-db = SQLAlchemy()
 DB = 'database.db'
 
 def create_app():
     app = Flask(__name__)
     app.config['SECRET_KEY'] = 'osff-notes-app'
     app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///'+ path.join(app.instance_path, DB)
-    db.init_app(app)
+    db = SQLAlchemy(app)
 
     from .views import views
     from .auth import auth
@@ -32,7 +31,7 @@ def create_app():
     return app
 
 def create_db(app):
-    if not path.exists(f'{app.instance_path}/{DB}'):
+    if not path.exists(path.join(app.instance_path, DB)):
         # Create database models
         with app.app_context():
             db.create_all()
