@@ -29,6 +29,6 @@ def delete_note():
         if note.user_id == current_user.id:
             db.session.delete(note)
             db.session.commit()
-            return jsonify({message: 'Note deleted.'})
+            return jsonify({'message': 'Note deleted.'})
     else:
-        return jsonify({message: 'Note cannot be deleted.'})
+        return jsonify({'message': 'Note cannot be deleted.'})
