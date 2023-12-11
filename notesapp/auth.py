@@ -22,7 +22,7 @@ def login():
                 flash('Incorrect password.', category='error')
         else:
             flash('User does not exist.', category='error')
-    return render_template('login.html')
+    return render_template('login.html', user=current_user)
 
 @auth.route('/create_account', methods=['GET', 'POST'])
 def create_account():
@@ -52,10 +52,10 @@ def create_account():
             login_user(user, remember=True)
             return redirect(url_for('views.index'))
 
-    return render_template('signup.html')
+    return render_template('create_account.html', user=current_user)
 
 @auth.route('/logout')
 @login_required
 def logout():
     logout_user()
-    return '<p>logout</p>'
+    return redirect(url_for('auth.login'))
