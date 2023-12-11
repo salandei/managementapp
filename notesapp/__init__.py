@@ -32,7 +32,7 @@ def create_app():
     return app
 
 def create_db(app):
-    if not path.exists('notesapp' + DB)):
+    if not path.exists('notesapp' + DB):
         # Create database models
         db.create_all(app)
         print('Created Database')
