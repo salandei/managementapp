@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, flash, jsonify
+from flask import Blueprint, render_template,request, flash, jsonify
 from flask_login import login_required, current_user
 import json
 from .models import Note
@@ -18,8 +18,7 @@ def index():
             db.session.add(new_note)
             db.session.commit()
             flash('Note added successfully.', category='success')
-    else:
-        return render_template('home.html', user=current_user)
+    return render_template('home.html', user=current_user)
 
 @views.route('/delete-note', methods=['POST'])
 def delete_note():
@@ -30,4 +29,6 @@ def delete_note():
         if note.user_id == current_user.id:
             db.session.delete(note)
             db.session.commit()
-            return jsonify({})
+            return jsonify({message: 'Note deleted.'})
+    else:
+        return jsonify({message: 'Note cannot be deleted.'})
