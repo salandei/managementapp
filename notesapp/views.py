@@ -1,5 +1,6 @@
-from flask import Blueprint, render_template, flash
+from flask import Blueprint, render_template, flash, jsonify
 from flask_login import login_required, current_user
+import json
 from .models import Note
 from . import db
 
@@ -19,3 +20,14 @@ def index():
             flash('Note added successfully.', category='success')
     else:
         return render_template('home.html', user=current_user)
+
+@views.route('/delete-note', methods=['POST'])
+def delete_note():
+    req_data = json.loads(request.data)
+    note_id = req_data['noteID']
+    note = Note.query.get(note_id)
+    if note:
+        if note.user_id == current_user.id:
+            db.session.delete(note)
+            db.session.commit()
+            return jsonify({})
