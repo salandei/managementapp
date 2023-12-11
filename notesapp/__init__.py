@@ -8,7 +8,7 @@ DB = 'database.db'
 def create_app():
     app = Flask(__name__)
     app.config['SECRET_KEY'] = 'osff-notes-app'
-    app.config['SQLALCHEMY_DATABASE_URL'] = f'sqlite:///{DB}'
+    app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///'+ path.join(app.instance_path, DB)
     db.init_app(app)
 
     from .views import views
@@ -23,7 +23,8 @@ def create_app():
     return app
 
 def create_db(app):
-    if not path.exists(f'notesapp/{DB}'):
+    if not path.exists(f'{app.instance_path}/{DB}'):
         # Create database models
-        db.create_all(app=app)
+        with app.app_context():
+            db.create_all()
         print('Created Database')
