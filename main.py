@@ -1,4 +1,4 @@
-from notesapp import create_app
+from managementapp import create_app
 
 app = create_app()
 
