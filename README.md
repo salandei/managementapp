@@ -1,14 +1,37 @@
-# Multi-model CRUD App
+# OSFF User Management App
 
-Design and build a web application using Flask or Express.
+## Project Description
+
+OSFF User Management App is designed for any
+form of organization to effectively manage the
+various Departments, Roles, and Members of the
+organization.
+
+*Note: We are yet to include an option for only administrators.*
+
+### Database Schema
+
+The database consists of three tables: users, roles, and departments.
+- Each User can be assigned a role and a department
+- A Role can be assigned to at least one User
+- A Department consists of User(s) with the same/different Role(s)
+
 
 ## How to run the app locally
-Note: You can choose to create a virtual environment or not.
+
+**Note: It is advisable to create a Python virtual environment before installing dependencies.**
 
 - clone the repo to your local machine
 - cd into project's root
-- run `pip3 install -r requirements.txt` to install necessary dependencies
-- run `main.py` (The app must be fully configured and running now)
+- run `pip install -r requirements.txt` to install necessary dependencies
+- run `python main.py` to get the app configured and running
+- access the app on http://localhost:5000
+
+
+
+# Multi-model CRUD App
+
+Design and build a web application using Flask or Express.
 
 ## Requirements
 
