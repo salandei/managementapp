@@ -23,6 +23,13 @@
       text-align: left;
     }
 
+    @media only screen and (max-width: 600px)
+    {
+      #form-container {
+        width: 80% !important;
+      }
+    }
+
     /* Remove annoying extra border at bottom of form box */
 .ui.stacked.segment::after{
   border:none;
@@ -122,7 +129,7 @@ $(function() {
 {% endblock %}
 {% block body %}
 <div class="ui middle aligned center aligned grid" style="background-color:white; margin-top:0px;">
-    <div class="eight wide column" style="margin-top:4em; margin-bottom:8em">
+    <div id="form-container" class="eight wide column" style="margin-top:4em; margin-bottom:8em">
         <h2 class="ui image header" style="color: #74D7D7; font-family: Josefin Slab; font-weight:400; font-size:2.5em">
             <div class="content">
                 Register for an account

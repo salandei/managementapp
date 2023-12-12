@@ -30,6 +30,13 @@
     font-size: 1em;
     }
 
+    @media only screen and (max-width: 600px)
+    {
+      #form-container {
+        width: 80% !important;
+      }
+    }
+
     /* Remove annoying extra border at bottom of form box */
 .ui.stacked.segment::after{
   border:none;
@@ -74,7 +81,7 @@
 {% block body %}
 
 <div class="ui middle aligned center aligned grid" style="background-color:white; margin-top:0px;">
-    <div class="twelve wide column" style="margin-top:4em; margin-bottom:8em">
+    <div id="form-container" class="twelve wide column" style="margin-top:4em; margin-bottom:8em">
         <div class="ui center aligned grid">
 
             {% with messages = get_flashed_messages() %}
